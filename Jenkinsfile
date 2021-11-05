@@ -40,10 +40,6 @@ node {
 			}else{
 			   rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:deploy -p force-app/main/default/. -u ${HUB_ORG} -l RunLocalTests"
 			}
-			  
-            printf rmsg
-            println('Hello from a Job DSL script!')
-            println(rmsg)
         }
     }
 }
