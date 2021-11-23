@@ -11,7 +11,7 @@ node {
     stage('checkout source') {
         checkout scm
     }
-    withCredentials([file(credentialsId: df75448b-67c4-40b2-ac90-7dec9a585372, variable: 'jwt_key_file')]) {
+    withCredentials([file(credentialsId: "df75448b-67c4-40b2-ac90-7dec9a585372", variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
             rc = sh returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}"
             if (rc != 0) {error 'Org authorization failed'}
