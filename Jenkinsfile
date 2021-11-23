@@ -13,9 +13,9 @@ node {
     }
     withCredentials([file(credentialsId: "df75448b-67c4-40b2-ac90-7dec9a585372", variable: 'jwt_key_file')]) {
         stage('Deploye Code') {
-            rc = bat(returnStatus: true, script: '${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}') 
+            rc = bat(returnStatus: true, script: "${toolbelt} force:auth:jwt:grant --clientid ${CONNECTED_APP_CONSUMER_KEY} --username ${HUB_ORG} --jwtkeyfile ${jwt_key_file} --setdefaultdevhubusername --instanceurl ${SFDC_HOST}") 
             if (rc != 0) {error 'Org authorization failed'}
-		rmsg = bat(returnStdout: true, script: '${toolbelt} force:source:deploy -p force-app/main/default/. -u ${HUB_ORG} -l RunLocalTests') 
+			rmsg = bat(returnStdout: true, script: "${toolbelt} force:source:deploy -p force-app/main/default/. -u ${HUB_ORG} -l RunLocalTests") 
         }
     }
 }
