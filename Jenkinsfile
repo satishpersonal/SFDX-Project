@@ -20,7 +20,7 @@ node {
             rc = bat returnStatus: true, script: "\"${toolbelt}\" sfpowerkit:auth:login -u ${HUB_ORG} -p ${PASSWORD} -r ${SFDC_HOST} -s ${SECURITY_TOKEN}"
             if (rc != 0) { error 'hub org authorization failed' }
 		    println rc
-		    rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:deploy -p force-app/main/default/. -u ${HUB_ORG}"	
+		    rmsg = bat returnStdout: true, script: "\"${toolbelt}\" force:source:deploy -p force-app/main/default/. -u ${HUB_ORG} -l RunLocalTests"	
         }
     }
 }
